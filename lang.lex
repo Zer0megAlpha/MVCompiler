@@ -1,20 +1,20 @@
 %{
         // Comment
 %}
+
 %%
-(" "|"  "|"\n"|"\r")                    { }
-"//"                           	 	{ }//printf("Ignore Pascal-style comments\n");
-"/*"[^*/]*"*/"	                        { }//printf("Ignore Pascal-style comments\n");
-[0-9]+                                  printf("INTEGER         %d\n",atoi(yytext));
-"'"[^']*"'"                             printf("STRING CONSTANT %s\n",yytext);
+(" "|\t|\n|\r)                          { }
+"/"                           	 	{ }//printf("Ignore single linecomments\n");
+"/*"[^/]*"*/"	                        { }//printf("Ignore multi-line comments\n");
+[0-9]+                                  printf("INTEGER %d\n",atoi(yytext));
+"\""[^\"]*"\""                          printf("STRING CONSTANT %s\n",yytext);
 "="                                     printf("EQUALS\n");
 ";"                                     printf("SEMICOLON\n");
-":"                                     printf("COLON\n");
-"("					printf("BEG PAREN\n");
+"("					printf("BEGIN PAREN\n");
 ")"                                     printf("END PAREN\n");
-"{"					printf("BEG BRACES\n);
-"}"					printf("END BRACES\n);
-"return"				printf("RETURN");
+"{"					printf("BEGIN BRACES\n");
+"}"					printf("END BRACES\n");
+"return"				printf("RETURN\n");
 "for"                     		printf("FOR\n");
 "while"					printf("WHILE\n");
 "do"                        		printf("DO\n");
