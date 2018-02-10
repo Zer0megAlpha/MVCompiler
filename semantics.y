@@ -14,16 +14,14 @@
 
 //Data types
 %union {
-
-
+  int ival;
+  char *sval;
 }
 
 //Define Terminal Symbols
 
-/*
 %token <ival> INT
 %token <sval> STRING
-*/
 
 //Grammar
 %%
