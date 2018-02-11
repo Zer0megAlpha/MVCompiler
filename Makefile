@@ -6,6 +6,7 @@ CC	= gcc
 CFLAG	= -g -Wall -ansi -pedantic
 
 all:		$(OBJS)
+		$(CC) lex.c bison.c -lfl -o MVCompiler 
 
 lex.o:		lex.c
 		$(CC) $(CFLAGS) -c lex.c -o lex.o
