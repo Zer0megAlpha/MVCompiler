@@ -25,7 +25,6 @@
   char *e_brace;
   char *semicolon;
   char *type;
-  char *ret;
 }
 
 //Define Terminal Symbols
@@ -41,12 +40,24 @@
 %token <e_brace> E_BRACE
 %token <semicolon> SEMICOLON
 %token <type> TYPE
-%token <ret> RETURN
+%token RETURN
 %token END_OF_FILE
 
 //Grammar
 %%
-stmt:
+input: func { printf("ENDED"); };
+
+func:  TYPE IDENTIFIER B_PAREN E_PAREN B_BRACE block E_BRACE { printf("FUNC"); };
+
+block: stmt block { printf("BLOCK"); }
+    |  /* EMPTY */
+;
+
+stmt:  IDENTIFIER B_PAREN expr E_PAREN SEMICOLON { printf("STATEMENT"); }
+|  RETURN INT SEMICOLON { printf("RETURNED"); };
+
+expr:  STRING { printf("Found STRING"); }
+|  INT  { printf("Found INT"); };
 
 %%
 
@@ -71,6 +82,11 @@ int main(int argc, char **argv[]) {
   do {
     yyparse();
   } while (!feof(yyin));
-
+  
   return 0;
+}
+
+void yyerror(const char *s) {
+  printf("Parsing error: %s", s);
+  return;
 }
