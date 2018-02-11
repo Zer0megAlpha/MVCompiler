@@ -21,9 +21,9 @@
   char *op;
   char *b_paren;
   char *e_paren;
-  char *b_bracket;
-  char *e_bracket;
-  char *colon;
+  char *b_brace;
+  char *e_brace;
+  char *semicolon;
   char *type;
   char *ret;
 }
@@ -37,15 +37,16 @@
 %token <operator> OP
 %token <b_paren> B_PAREN
 %token <e_paren> E_PAREN
-%token <b_bracket> B_BRACKET
-%token <e_bracket> E_BRACKET
-%token <colon> COLON
+%token <b_brace> B_BRACE
+%token <e_brace> E_BRACE
+%token <semicolon> SEMICOLON
 %token <type> TYPE
 %token <ret> RETURN
+%token END_OF_FILE
 
 //Grammar
 %%
-input:        /* empty */
+stmt:
 
 %%
 
