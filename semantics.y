@@ -45,19 +45,19 @@
 
 //Grammar
 %%
-input: func { printf("ENDED"); };
+input: func { printf("ENDED\n"); };
 
-func:  TYPE IDENTIFIER B_PAREN E_PAREN B_BRACE block E_BRACE { printf("FUNC"); };
+func:  TYPE IDENTIFIER B_PAREN E_PAREN B_BRACE block E_BRACE { printf("FUNC\n"); };
 
-block: stmt block { printf("BLOCK"); }
+block: stmt block { printf("BLOCK\n"); }
     |  /* EMPTY */
 ;
 
-stmt:  IDENTIFIER B_PAREN expr E_PAREN SEMICOLON { printf("STATEMENT"); }
-|  RETURN INT SEMICOLON { printf("RETURNED"); };
+stmt:  IDENTIFIER B_PAREN expr E_PAREN SEMICOLON { printf("STATEMENT\n"); }
+|  RETURN INT SEMICOLON { printf("RETURNED\n"); };
 
-expr:  STRING { printf("Found STRING"); }
-|  INT  { printf("Found INT"); };
+expr:  STRING { printf("Found STRING\n"); }
+|  INT  { printf("Found INT\n"); };
 
 %%
 
